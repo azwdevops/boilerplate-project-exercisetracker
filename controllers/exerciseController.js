@@ -39,14 +39,17 @@ exports.addExercise = async (req, res) => {
     // Send back the user object with created exercise
     const data = {
       username: user.username,
-      description: user.exercises[0].description,
-      duration: user.exercises[0].duration,
-      date: user.exercises[0].date,
+      description,
+      duration,
+      date: new Date(date),
       _id: user._id,
     };
-    return res.status(200).json(user);
+    return res.status(200).json(data);
   } catch (error) {
     // If there's an error, send back a 500 status with the error message
     return res.status(500).json({ error: error.message });
   }
 };
+
+const arr = [1, 2, 3, 4, 5];
+console.log(arr[-1]);
