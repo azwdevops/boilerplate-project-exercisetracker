@@ -49,7 +49,9 @@ exports.getUserLogs = async (req, res) => {
   }
 
   // Extract query parameters (from, to, limit)
-  const { from, to, limit } = req.query;
+  const from = req.query?.from;
+  const to = req.query?.to;
+  const limit = req.query?.limit;
 
   try {
     // Find the user by ID in the database
@@ -67,11 +69,13 @@ exports.getUserLogs = async (req, res) => {
 
     // filter the logs by from and to date if provided
     if (from) {
-      logs = logs?.filter((log) => log?.date >= from);
+      const fromDate = new Date(from).toDateString();
+      logs = logs?.filter((log) => log?.date >= fromDate);
     }
 
     if (to) {
-      logs = logs?.filter((log) => log?.date <= to);
+      const toDate = new Date(to).toDateString();
+      logs = logs?.filter((log) => log?.date <= toDate);
     }
 
     // Apply the 'limit' query parameter to limit the number of logs returned
