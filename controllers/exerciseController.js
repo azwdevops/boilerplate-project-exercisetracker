@@ -14,7 +14,12 @@ exports.addExercise = async (req, res) => {
   const { description, duration, date } = req.body; // Extract exercise details from the request body
 
   // if no date if provided, use the current date
-  const exerciseDate = new Date(date).toDateString() || new Date().toDateString();
+  let exerciseDate;
+  if (date == "") {
+    exerciseDate = new Date().toDateString();
+  } else {
+    exerciseDate = new Date(date).toDateString();
+  }
 
   try {
     //   Find the user by ID in the database
