@@ -58,7 +58,7 @@ exports.getUserLogs = async (req, res) => {
     // If the user doesn't exist, return a 404 error
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    let logs = user.exercises; // we get the user exercises
+    let logs = user.exercises || []; // we get the user exercises
 
     // filter the logs by from and to date if provided
     if (from) {
