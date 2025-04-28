@@ -77,7 +77,7 @@ exports.getUserLogs = async (req, res) => {
     const userLogs = logs.map((logItem) => ({
       description: logItem.description,
       duration: logItem.duration,
-      date: logItem.date.toDateString(),
+      date: logItem.date,
     }));
 
     // send the user data with count and the filtered logs
