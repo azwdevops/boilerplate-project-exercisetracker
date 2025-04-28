@@ -15,7 +15,7 @@ exports.addExercise = async (req, res) => {
 
   // if no date if provided, use the current date
   let exerciseDate;
-  if (date == "") {
+  if (!date || date == "") {
     exerciseDate = new Date().toDateString();
   } else {
     exerciseDate = new Date(date).toDateString();

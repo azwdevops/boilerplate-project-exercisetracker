@@ -67,7 +67,7 @@ exports.getUserLogs = async (req, res) => {
 
     // if logs is [] then we return without applying filters
     if (logs?.length === 0) {
-      return res.status(200).json({ _id: user._id, username: user.username, count: 0, logs: [] });
+      return res.status(200).json({ _id: user._id, username: user.username, count: 0, log: [] });
     }
 
     // filter the logs by from and to date if provided
@@ -94,7 +94,7 @@ exports.getUserLogs = async (req, res) => {
 
     // send the user data with count and the filtered logs
 
-    return res.status(200).json({ _id: user._id, username: user.username, count: userLogs.length, logs: userLogs });
+    return res.status(200).json({ _id: user._id, username: user.username, count: userLogs.length, log: userLogs });
   } catch (error) {
     // If there's an error, send back a 500 status with the error message
     console.log(error);
