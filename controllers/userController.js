@@ -67,19 +67,19 @@ exports.getUserLogs = async (req, res) => {
 
     // filter the logs by from and to date if provided
     if (from) {
-      logs = logs.filter((log) => log.date >= from);
+      logs = logs?.filter((log) => log?.date >= from);
     }
 
     if (to) {
-      logs = logs.filter((log) => log.date <= to);
+      logs = logs?.filter((log) => log?.date <= to);
     }
 
     // Apply the 'limit' query parameter to limit the number of logs returned
     if (limit) {
-      logs = logs.slice(parseInt(limit)); // limit the logs to the specified number
+      logs = logs?.slice(parseInt(limit)); // limit the logs to the specified number
     }
 
-    const userLogs = logs.map((logItem) => ({
+    const userLogs = logs?.map((logItem) => ({
       description: logItem.description,
       duration: logItem.duration,
       date: logItem.date,

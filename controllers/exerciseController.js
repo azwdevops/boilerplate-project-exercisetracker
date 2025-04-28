@@ -27,7 +27,7 @@ exports.addExercise = async (req, res) => {
     const newExercise = {
       description,
       duration,
-      date: exerciseDate,
+      date: new Date(exerciseDate).toDateString(),
     };
 
     // Add the new exercise to the user's exercises array
@@ -39,9 +39,9 @@ exports.addExercise = async (req, res) => {
     // Send back the user object with created exercise
     const data = {
       username: user.username,
-      description,
-      duration,
-      date: new Date(date),
+      description: newExercise.description,
+      duration: newExercise.duration,
+      date: newExercise.date,
       _id: user._id,
     };
     return res.status(200).json(data);
