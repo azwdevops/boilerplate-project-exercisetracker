@@ -60,6 +60,11 @@ exports.getUserLogs = async (req, res) => {
 
     let logs = user.exercises || []; // we get the user exercises
 
+    // if logs is [] then we return without applying filters
+    if (logs?.length === 0) {
+      return res.status(200).json({ _id: user._id, username: user.username, count: 0, logs: [] });
+    }
+
     // filter the logs by from and to date if provided
     if (from) {
       logs = logs.filter((log) => log.date >= from);
