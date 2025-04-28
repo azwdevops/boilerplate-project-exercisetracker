@@ -83,7 +83,7 @@ exports.getUserLogs = async (req, res) => {
 
     // Apply the 'limit' query parameter to limit the number of logs returned
     if (limit) {
-      logs = logs?.slice(parseInt(limit)); // limit the logs to the specified number
+      logs = logs?.slice(0, parseInt(limit)); // limit the logs to the specified number
     }
 
     const userLogs = logs?.map((logItem) => ({
