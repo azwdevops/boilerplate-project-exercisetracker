@@ -72,12 +72,12 @@ exports.getUserLogs = async (req, res) => {
 
     // filter the logs by from and to date if provided
     if (from) {
-      const fromDate = new Date(from).toDateString();
+      const fromDate = new Date(from);
       logs = logs?.filter((log) => log?.date >= fromDate);
     }
 
     if (to) {
-      const toDate = new Date(to).toDateString();
+      const toDate = new Date(to);
       logs = logs?.filter((log) => log?.date <= toDate);
     }
 
