@@ -88,7 +88,7 @@ exports.getUserLogs = async (req, res) => {
 
     const userLogs = logs?.map((logItem) => ({
       description: logItem.description,
-      duration: logItem.duration,
+      duration: Number(logItem.duration),
       date: logItem.date,
     }));
 

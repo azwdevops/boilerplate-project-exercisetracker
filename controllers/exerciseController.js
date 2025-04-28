@@ -45,9 +45,9 @@ exports.addExercise = async (req, res) => {
     const data = {
       username: user.username,
       description: newExercise.description,
-      duration: newExercise.duration,
-      date: newExercise.date,
+      duration: Number(newExercise.duration),
       _id: user._id,
+      date: newExercise.date,
     };
     return res.status(200).json(data);
   } catch (error) {
