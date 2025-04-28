@@ -18,6 +18,7 @@ exports.createUser = async (req, res) => {
 
     return res.status(201).json(user);
   } catch (error) {
+    console.log(error);
     // If there's an error, send back a 500 status with the error message
     return res.status(500).json({ error: error.message });
   }
@@ -32,6 +33,8 @@ exports.getUsers = async (req, res) => {
     // Send back the users list as the response
     return res.status(200).json(users);
   } catch (error) {
+    console.log(error);
+
     // If there's an error, send back a 500 status with the error message
     return res.status(500).json({ error: error.message });
   }

@@ -4,7 +4,7 @@ const UserModel = require("../models/userModel");
 
 // POST /api/users/:_id/exercises: Add an exercise to a specific user
 exports.addExercise = async (req, res) => {
-  const { _id } = req.params; // Extract the user ID from the URL parameters
+  const _id = req.params?._id; // Extract the user ID from the URL parameters
 
   // Check if the user ID is a valid ObjectId
   if (!mongoose.Types.ObjectId.isValid(_id)) {
@@ -14,7 +14,7 @@ exports.addExercise = async (req, res) => {
   const { description, duration, date } = req.body; // Extract exercise details from the request body
 
   // if no date if provided, use the current date
-  const exerciseDate = new Date(date) || new Date();
+  const exerciseDate = new Date(date).toDateString() || new Date().toDateString();
 
   try {
     //   Find the user by ID in the database
@@ -27,7 +27,7 @@ exports.addExercise = async (req, res) => {
     const newExercise = {
       description,
       duration,
-      date: new Date(exerciseDate).toDateString(),
+      date: exerciseDate,
     };
 
     // Add the new exercise to the user's exercises array
@@ -46,6 +46,8 @@ exports.addExercise = async (req, res) => {
     };
     return res.status(200).json(data);
   } catch (error) {
+    console.log(error);
+
     // If there's an error, send back a 500 status with the error message
     return res.status(500).json({ error: error.message });
   }
