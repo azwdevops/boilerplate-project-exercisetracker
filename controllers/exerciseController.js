@@ -50,6 +50,3 @@ exports.addExercise = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
-
-const arr = [1, 2, 3, 4, 5];
-console.log(arr[-1]);
