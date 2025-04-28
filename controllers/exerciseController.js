@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const UserModel = require("../models/userModel");
-const { formatDate } = require("../utils/formatDate");
 
 // POST /api/users/:_id/exercises: Add an exercise to a specific user
 exports.addExercise = async (req, res) => {
@@ -15,7 +14,7 @@ exports.addExercise = async (req, res) => {
   const { description, duration, date } = req.body; // Extract exercise details from the request body
 
   // if no date if provided, use the current date
-  const exerciseDate = date || formatDate(new Date());
+  const exerciseDate = new Date(date) || new Date();
 
   try {
     //   Find the user by ID in the database
@@ -37,7 +36,14 @@ exports.addExercise = async (req, res) => {
     // Save the updated user back to the database
     await user.save();
 
-    // Send back the updated user object with exercises
+    // Send back the user object with created exercise
+    const data = {
+      username: user.username,
+      description: user.exercises[0].description,
+      duration: user.exercises[0].duration,
+      date: user.exercises[0].date,
+      _id: user._id,
+    };
     return res.status(200).json(user);
   } catch (error) {
     // If there's an error, send back a 500 status with the error message

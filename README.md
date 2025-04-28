@@ -79,8 +79,6 @@ exercise-log-api/
 │   └── userModel.js                    # Mongoose User schema
 ├── routes/
 │   └── userRoutes.js              # User-related API routes
-├── utils/
-│   └── formatDate.js               # Utility function for formatting date
 ├── index.js                       # Main entry point for the application
 └── package.json                    # Project dependencies and scripts
 ```
